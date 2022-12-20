@@ -113,7 +113,12 @@ ul {
     margin: 0 0 10px 0;
 }
 
-
+.projectCoded {
+    display: block;
+    margin: 0 auto;
+    font-size: 10px;
+    text-align: center;
+}
 
 
 

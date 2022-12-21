@@ -13,15 +13,3 @@ let currentYear = now.getFullYear();
 
 
 dateElement.innerHTML = `${currentDay}-${currentMonth}-${currentYear}`;
-
-function enterCity (event){
-    event.preventdefault ();
-    let citySearch = document.querySelector ("#form-input");
-    
-}
-
-let city = document.querySelector ("#city");
-city.innerHTML = `${citySearch.value}`;
-
-let form = document.querySelector ("#search-form");
-form.addEventListener ("submit", enterCity);

@@ -29,9 +29,9 @@ ul {
 .weather-topsection {
     display: block;
     margin: 0 auto;
-    padding: 0px 30px 20px 30px;
+    padding: 0px 30px 0 30px;
     max-width: 750px;
-    border-radius: 5px 5px 0 0;
+    border-radius: 6px 6px 0 0;
     border: 3px solid #61ADB9;
 }
 
@@ -62,7 +62,7 @@ ul {
     color:#fff;
 }
 
-.celsius-farenheit {
+.celsius-fahrenheit {
     display: inline;
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
@@ -70,6 +70,7 @@ ul {
     font-weight: 600;
     color:#fff;
     text-align: right;
+    top: -34px;
 }
 
 .weather-bottomsection {
@@ -78,7 +79,7 @@ ul {
     padding: 0px 30px 30px 30px;
     background: #61ADB9;
     max-width: 750px;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 6px 6px;
     border: 2px solid #61ADB9;
 }
 
@@ -104,7 +105,7 @@ ul {
 
 .imgsmall-bottom {
     display: block;
-    margin: 0 auto;
+    margin: 0 0 5px 0;
     text-align: center;
 }
 

@@ -100,18 +100,18 @@ ul {
 
 .day-bottom {
     display: block;
-    margin: 0 0 13px 0;
+    margin: 0 0 10px 0;
 }
 
 .imgsmall-bottom {
     display: block;
-    margin: 0 0 5px 0;
+    margin: 0 auto;
     text-align: center;
 }
 
 .degrees-bottom {
     display: block;
-    margin: 0 0 10px 0;
+    margin: 5px 0 5px 0;
 }
 
 .projectCoded {

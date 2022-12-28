@@ -112,7 +112,11 @@ ul {
 
 .degrees-bottom {
     display: block;
-    margin: 5px 0 5px 0;
+    margin: 7px 0 0 0;
+}
+
+.degrees-bottom-min {
+    opacity: 0.6;
 }
 
 .projectCoded {

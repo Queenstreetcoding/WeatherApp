@@ -1,9 +1,14 @@
 let now = new Date ();
 let date = now.getDate ();
 let year = now.getFullYear ();
-let hours = now.getHours ();
-let minutes = now.getMinutes ();
-
+let hours = now.getHours (); {
+    if (hours < 10) 
+    hours = "0" + hours;
+  }
+let minutes = now.getMinutes ();{
+    if (minutes < 10) 
+    minutes = "0" + minutes;
+  }
 let days = ["Sunday", "Monday", "Tueday", "Wedday", "Thuday", "Friday", "Saturday"];
 let day = days [now.getDay()];
 
@@ -19,16 +24,20 @@ time.innerHTML = `${hours}:${minutes}`;
 
 function showTemperature (response){
     let cityElement = document.querySelector ("#city");
+    let countryElement = document.querySelector ("#country");
     let condition = document.querySelector ("#condition");
     let windElement = document.querySelector ("#wind");
     let humidityElement = document.querySelector ("#humidity");
     let topTemperatureElement = document.querySelector ("#degreesTop");
 
+    celsiusTemperature = response.data.temperature.current;
+
     cityElement.innerHTML = response.data.city;
+    countryElement.innerHTML = response.data.country;
     condition.innerHTML = response.data.condition.description;
     windElement.innerHTML = Math.round (response.data.wind.speed);
     humidityElement.innerHTML = Math.round (response.data.temperature.humidity);
-    topTemperatureElement.innerHTML = Math.round (response.data.temperature);
+    topTemperatureElement.innerHTML = Math.round (celsiusTemperature);
 }
 
 function search(city) {
@@ -43,7 +52,28 @@ function handleSubmit (event){
     search (cityInputElement.value);
 }
 
+function fahrenheitConversion (event){
+    event.preventDefault ();
+    let fahrenheitTemperature = (celsiusTemperature * 9 / 5) + 32;
+    let temperatureElement = document.querySelector ("#degreesTop");
+    temperatureElement.innerHTML = Math.round (fahrenheitTemperature);
+}
+
+function celsiusConversion (event){
+    event.preventDefault ();
+    let temperatureElement = document.querySelector ("#degreesTop");
+    temperatureElement.innerHTML = Math.round (celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
 let form = document.querySelector ("#search-form");
 form.addEventListener ("submit", handleSubmit);
 
 search ("Delft");
+
+let fahrenheitLink = document.querySelector ("#fahrenheit-link");
+fahrenheitLink.addEventListener ("click", fahrenheitConversion);
+
+let celsiusLink = document.querySelector ("#celsius-link");
+celsiusLink.addEventListener ("click", celsiusConversion);

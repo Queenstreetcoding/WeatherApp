@@ -20,6 +20,7 @@ h5 {
 ul {
     margin: 30px auto;
     font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
     font-size: 17px;
     list-style: none;
     padding: 0px;
@@ -70,7 +71,7 @@ ul {
     font-weight: 600;
     color:#fff;
     text-align: right;
-    top: -34px;
+    
 }
 
 .weather-bottomsection {
@@ -120,10 +121,6 @@ ul {
     font-size: 10px;
     text-align: center;
 }
-
-
-
-
 
 
 

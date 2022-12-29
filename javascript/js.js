@@ -22,6 +22,28 @@ let time = document.querySelector ("#time");
 time.innerHTML = `${hours}:${minutes}`;
 
 
+function showForecast (){
+  let forecastElement = document.querySelector ("#forecast");
+  
+  let forecastHTML = `<div class="row">`;
+  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
+  days.forEach (function (day){
+  forecastHTML = forecastHTML + `
+      <div class="col-2">
+          <div class="day-bottom">
+              ${day}
+          </div>
+          <img src="https://img.icons8.com/stickers/200/null/sun.png" alt="Sunny" class ="imgsmall-bottom" width="80"/>
+          <div class="degrees-bottom">
+          <span class="degrees-bottom-max"> 20°</span>
+          <span class="degrees-bottom-min">15° </span>  
+      </div>`;
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+});
+}
+
+
 function showTemperature (response){
     let cityElement = document.querySelector ("#city");
     let countryElement = document.querySelector ("#country");
@@ -71,6 +93,7 @@ let form = document.querySelector ("#search-form");
 form.addEventListener ("submit", handleSubmit);
 
 search ("Delft");
+showForecast ();
 
 let fahrenheitLink = document.querySelector ("#fahrenheit-link");
 fahrenheitLink.addEventListener ("click", fahrenheitConversion);

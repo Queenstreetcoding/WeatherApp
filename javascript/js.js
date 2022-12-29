@@ -22,7 +22,8 @@ let time = document.querySelector ("#time");
 time.innerHTML = `${hours}:${minutes}`;
 
 
-function showForecast (){
+function showForecast (response){
+  console.log (response.data)
   let forecastElement = document.querySelector ("#forecast");
   
   let forecastHTML = `<div class="row">`;
@@ -43,6 +44,11 @@ forecastElement.innerHTML = forecastHTML;
 });
 }
 
+function getCoordinates (coordinates) {
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showForecast);
+}
 
 function showTemperature (response){
     let cityElement = document.querySelector ("#city");
@@ -60,6 +66,8 @@ function showTemperature (response){
     windElement.innerHTML = Math.round (response.data.wind.speed);
     humidityElement.innerHTML = Math.round (response.data.temperature.humidity);
     topTemperatureElement.innerHTML = Math.round (celsiusTemperature);
+
+    getCoordinates(response.data.coordinates);
 }
 
 function search(city) {
@@ -93,7 +101,6 @@ let form = document.querySelector ("#search-form");
 form.addEventListener ("submit", handleSubmit);
 
 search ("Delft");
-showForecast ();
 
 let fahrenheitLink = document.querySelector ("#fahrenheit-link");
 fahrenheitLink.addEventListener ("click", fahrenheitConversion);

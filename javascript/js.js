@@ -9,8 +9,6 @@ let minutes = now.getMinutes ();{
     if (minutes < 10) 
     minutes = "0" + minutes;
   }
-let days = ["Sunday", "Monday", "Tueday", "Wedday", "Thuday", "Friday", "Saturday"];
-let day = days [now.getDay()];
 
 let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 let month = months [now.getMonth ()];
@@ -22,23 +20,32 @@ let time = document.querySelector ("#time");
 time.innerHTML = `${hours}:${minutes}`;
 
 
+function showDay (timestamp) {
+ let date = new Date (timestamp * 1000);
+ let day = date.getDay ();
+ let days = ["Sunday", "Monday", "Tueday", "Wedday", "Thuday", "Friday", "Saturday"];
+ 
+ return days[day];
+}
+
 function showForecast (response){
-  console.log (response.data)
+  let forecast = response.data.daily;
+  console.log (response.data);
   let forecastElement = document.querySelector ("#forecast");
   
   let forecastHTML = `<div class="row">`;
-  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
-  days.forEach (function (day){
+  forecast.forEach (function (forecastDay, index){
+    if (index < 5) {
   forecastHTML = forecastHTML + `
       <div class="col-2">
           <div class="day-bottom">
-              ${day}
+              ${showDay (forecastDay.time)}
           </div>
           <img src="https://img.icons8.com/stickers/200/null/sun.png" alt="Sunny" class ="imgsmall-bottom" width="80"/>
           <div class="degrees-bottom">
-          <span class="degrees-bottom-max"> 20°</span>
-          <span class="degrees-bottom-min">15° </span>  
-      </div>`;
+          <span class="degrees-bottom-max">${Math.round(forecastDay.temperature.maximum)}°</span>
+          <span class="degrees-bottom-min">${Math.round(forecastDay.temperature.minimum)}°</span>  
+      </div>`; }
 forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
 });
@@ -46,7 +53,7 @@ forecastElement.innerHTML = forecastHTML;
 
 function getCoordinates (coordinates) {
   let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecast);
 }
 

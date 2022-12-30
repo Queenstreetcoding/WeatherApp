@@ -29,6 +29,7 @@ function showDay (timestamp) {
 }
 
 function showForecast (response){
+  console.log (response.data);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector ("#forecast");
   
@@ -57,7 +58,6 @@ function getCoordinates (coordinates) {
 }
 
 function showTemperature (response){
-  console.log (response);
     let cityElement = document.querySelector ("#city");
     let countryElement = document.querySelector ("#country");
     let condition = document.querySelector ("#condition");
